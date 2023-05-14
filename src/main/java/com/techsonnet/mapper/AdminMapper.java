@@ -10,4 +10,5 @@ public interface AdminMapper {
     public int update(Admin admin);
     public Admin findById(Integer id);
     public List<Admin> findAll();
+    public Admin findByIdAndName(Integer id,String username);
 }

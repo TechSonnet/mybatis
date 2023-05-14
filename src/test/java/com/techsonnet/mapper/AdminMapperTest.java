@@ -69,5 +69,23 @@ class AdminMapperTest {
         sqlSession.close();
 
     }
+    @Test
+    public void findByIdAndNameTest(){
+        // 加载配置文件
+        InputStream inputStream = AdminMapperTest.class.getClassLoader().getResourceAsStream("mybatis-config.xml");
+        // 以下三步是固定，用于获得 SQLSession
+        SqlSessionFactoryBuilder sqlSessionFactoryBuilder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory sqlSessionFactory = sqlSessionFactoryBuilder.build(inputStream);
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
+        Admin tom = adminMapper.findByIdAndName(1, "tom");
+        System.out.println(tom);
+
+        // 提交事务，mybatis 必须手动提交事务
+        sqlSession.commit();
+        sqlSession.close();
+
+    }
 
 }
