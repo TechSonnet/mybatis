@@ -18,5 +18,7 @@
 
     <mappers>
         <mapper resource="com/techsonnet/mapper/xml/AdminMapper.xml"></mapper>
+        <mapper resource="com/techsonnet/mapper/xml/StudentMapper.xml"></mapper>
+        <mapper resource="com/techsonnet/mapper/xml/ClassesMapper.xml"></mapper>
     </mappers>
 </configuration>

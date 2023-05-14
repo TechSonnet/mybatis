@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.techsonnet.mapper.StudentMapper">
+
+
+    <resultMap id="studentMap" type="com.techsonnet.pojo.Student">
+        <id property="sno" column="sid"></id>
+        <result property="studentName" column="sname"></result>
+        <association property="classes" javaType="com.techsonnet.pojo.Classes">
+            <id property="classesNum" column="cid"></id>
+            <result property="classesName" column="cname"></result>
+            <collection property="students" ofType="com.techsonnet.pojo.Student">
+                <id column="sid" property="sno"></id>
+                <result property="studentName" column="sname"></result>
+                <!-- 此处可以看出，表设计的并不好，无限套娃了，不过很好玩 -->
+            </collection>
+        </association>
+    </resultMap>
+    <select id="findById" parameterType="java.lang.Integer" resultMap="studentMap">
+        select s.id sid,s.name sname,c.id cid,c.name cname from t_student s,t_classes c
+        where s.id = 1 and s.cid = c.id
+    </select>
+</mapper>
