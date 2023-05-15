@@ -3,4 +3,19 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.techsonnet.mapper.ClassesMapper">
 
+    <resultMap id="classesMap" type="com.techsonnet.pojo.Classes">
+        <id column="cnumber" property="classesNum"></id>
+        <result property="classesName" column="cname"></result>
+        <collection property="students" ofType="com.techsonnet.pojo.Student">
+            <id column="sno" property="sno"></id>
+            <result property="studentName" column="sname"></result>
+        </collection>
+    </resultMap>
+
+    <select id="findById" resultMap="classesMap">
+        SELECT c.id cnumber,c.name cname,s.id sno,s.name sname
+        FROM t_classes c INNER JOIN t_student s
+        ON s.cid = c.id
+        where c.id = #{id}
+    </select>
 </mapper>
