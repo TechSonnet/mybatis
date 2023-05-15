@@ -18,14 +18,11 @@ public class GeneratorMain {
         List<String> warings = new ArrayList<String>();
         boolean overwrite = true;
         String genCig = "/mybatisGeneratorConfig.xml";
-        File configFile = new
-                File(GeneratorMain.class.getResource(genCig).getFile());
-        ConfigurationParser configurationParser = new
-                ConfigurationParser(warings);
+        File configFile = new File(GeneratorMain.class.getResource(genCig).getFile());
+        ConfigurationParser configurationParser = new ConfigurationParser(warings);
         Configuration configuration = null;
         try {
-            configuration =
-                    configurationParser.parseConfiguration(configFile);
+            configuration = configurationParser.parseConfiguration(configFile);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (XMLParserException e) {
@@ -34,8 +31,7 @@ public class GeneratorMain {
         DefaultShellCallback callback = new DefaultShellCallback(overwrite);
         MyBatisGenerator myBatisGenerator = null;
         try {
-            myBatisGenerator = new
-                    MyBatisGenerator(configuration, callback, warings);
+            myBatisGenerator = new MyBatisGenerator(configuration, callback, warings);
         } catch (InvalidConfigurationException e) {
             e.printStackTrace();
         }
